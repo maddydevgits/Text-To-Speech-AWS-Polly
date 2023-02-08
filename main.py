@@ -38,7 +38,7 @@ def generate_image(prompt):
 
 bot.set_my_commands([
     {
-        "command": "/chatgpt",
+        "command": "/ask",
         "description": "You can ask anything"
     },
     {
@@ -61,7 +61,7 @@ def handle_message(message):
             image = generate_image(text[len("/draw"):].strip())
             bot.send_photo(chat_id=message.chat.id, photo=image)
         else:
-            if text.startswith("/chatgpt") :
+            if text.startswith("/ask") :
                 response = generate_response(text)
                 bot.send_message(chat_id=message.chat.id, text=response)
             elif text.startswith('/voice'):
@@ -85,6 +85,6 @@ def handle_message(message):
             else:
                 bot.send_message(chat_id=message.chat.id, text='Invalid Command')   
     else:
-        bot.send_message(chat_id=message.chat.id, text='[Ah ah ah, you are not allowed](https://media.giphy.com/media/owRSsSHHoVYFa/giphy.gif)', parse_mode='MarkdownV2')
+        bot.send_message(chat_id=message.chat.id, text='[you are not allowed]', parse_mode='MarkdownV2')
 
 bot.polling()
